@@ -1,0 +1,14 @@
+<h2>Restaurants</h2>
+<% @restaurants.each do |r| %>
+<h3><%= link_to r.name, r %></h3>
+<p><%= link_to "Website", r.website, target: "_blank" %></p>
+<p>Address: <%= r.address %> (<%= r.district %>)</p>
+<% if !r.image.empty? %>
+<p><%= image_tag r.image %></p>
+<% end %>
+<p><%= r.price %></p>
+<% end %>
+
+<% if @restaurants.count == 0 %>
+<p>No restaurants available yet</p>
+<% end %>

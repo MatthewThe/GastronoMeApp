@@ -1,0 +1,15 @@
+<h2><%= @restaurant.name %></h2>
+<% if !@restaurant.image.empty? %>
+<p><%= image_tag @restaurant.image %></p>
+<% end %>
+<p>
+  <strong>Address</strong>: <%= @restaurant.address %> (<%= @restaurant.district %>)<br/>
+  <strong>Price</strong>: <%= @restaurant.price %><br />
+  <strong>Tags</strong>: <%= @restaurant.tag_list %>
+</p>
+<% if !@restaurant.website.empty? %>
+<p><strong><%= link_to "Website", @restaurant.website, target: "_blank" %></strong></p>
+<% end %>
+<% if @restaurant.reviews.count == 0 %>
+<%= link_to "Delete restaurant", @restaurant, :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "button" %>
+<% end %>

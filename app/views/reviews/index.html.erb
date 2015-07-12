@@ -1,0 +1,13 @@
+<h2>Reviews</h2>
+<%= link_to "New review", new_review_path(), class: "button" %>
+<div class="clear space_4"></div>
+<% @reviews.each do |r| %>
+  <div class="review_item">
+    <h6><%= link_to r.restaurant.name, r.restaurant %></h6>
+    <%= link_to "Review " + r.date.strftime("%-d %B %Y"), r %><br/>
+    Overall rating <strong><%= r.rating_overall %></strong>
+  </div>
+<% end %>
+<% if @reviews.count == 0 %>
+<p>No reviews available yet</p>
+<% end %>

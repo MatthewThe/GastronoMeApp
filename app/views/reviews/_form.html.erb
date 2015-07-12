@@ -1,0 +1,73 @@
+<%= form_for @review do |f| %>
+  <%= fields_for @restaurant do |r| %>
+  <h3>Restaurant</h3>
+    <p>
+    	<%= r.label :name %><br />
+      <%= r.text_field :name %>
+    </p>
+    <p>
+    	<%= r.label :address %><br />
+      <%= r.text_field :address %>
+    </p>
+    <p>
+      <%= r.label :district %><br />
+      <%= r.text_field :district %>
+    </p>
+    <p>
+    	<%= r.label :website %><br />
+      <%= r.url_field :website %>
+    </p>
+    <p>
+      <%= r.label :image %><br />
+      <%= r.url_field :image %>
+    </p>
+    <p>
+      <%= r.label :price %><br />
+      <%= r.text_field :price %>
+    </p>
+    <p>
+      <%= r.label :tags %><br />
+      <%= r.text_field :tag_list %>
+    </p>
+  <% end %>
+  <h3>Review</h3>
+  <p>
+    <%= f.label :review %><br />
+    <%= f.text_area :review %>
+  </p>
+  <p>
+    <%= f.label :food %><br />
+    <%= f.text_area :food %>
+  </p>
+  <p>
+    <%= f.label :with %><br />
+    <%= f.text_field :with %>
+  </p>
+  <p>
+    <%= f.label :date %><br />
+    <%= f.date_field :date %>
+  </p>
+  <p>
+    <%= f.label :rating_atmosphere, "Atmosphere = " %><br />
+    <%= f.range_field :rating_atmosphere, :in => 1..10, :step => 1 %>
+  </p>
+  <p>
+    <%= f.label :rating_service, "Service = " %><br />
+    <%= f.range_field :rating_service, :in => 1..10, :step => 1 %>
+  </p>
+  <p>
+    <%= f.label :rating_food, "Food = " %><br />
+    <%= f.range_field :rating_food, :in => 1..10, :step => 1 %>
+  </p>
+  <p>
+    <%= f.label :rating_location, "Location = " %><br />
+    <%= f.range_field :rating_location, :in => 1..10, :step => 1 %>
+  </p>
+  <p>
+    <%= f.label :rating_overall, "Overall = " %><br />
+    <%= f.range_field :rating_overall, :in => 1..10, :step => '.5' %>
+  </p>
+  <p>
+  	<%= f.submit "Submit" %>
+  </p>
+<% end %>

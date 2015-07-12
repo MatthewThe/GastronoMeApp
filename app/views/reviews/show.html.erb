@@ -1,0 +1,51 @@
+<h2><%= @review.restaurant.name %></h2>
+<div class="review_wrapper">
+  <div class="review_left">
+    <% if !@review.restaurant.image.empty? %>
+    <p><%= image_tag @review.restaurant.image %></p>
+    <% end %>
+    <p>
+      <strong>Date</strong>: <%=@review.date.strftime("%-d %B %Y") %><br />
+      <strong>Address</strong>: <%= @review.restaurant.address %> (<%= @review.restaurant.district %>)<br/>
+      <strong>Price</strong>: <%= @review.restaurant.price %><br />
+      <strong>Tags</strong>: <%= @review.restaurant.tag_list %>
+    <% if !@review.with.empty? %>
+      <br /><strong>With</strong>: <%= @review.with %>
+    <% end %>
+    </p>
+    <% if !@review.restaurant.website.empty? %>
+    <p><strong><%= link_to "Website", @review.restaurant.website, target: "_blank" %></strong></p>
+    <% end %>
+    <p><strong>Food</strong>:<br /><%= simple_format @review.food %></p>
+    <p><strong>Review</strong>:<br /><%= simple_format @review.review %></p>
+    <%= link_to "Edit restaurant/review", edit_review_path(@review), class: "button" %>
+    <%= link_to "Delete review", @review, :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "button" %>
+    <%= link_to "Back to all reviews", reviews_path, class: "button" %>
+  </div>
+  <div class="review_right">
+    <h4>Ratings</h4>
+    <table>
+      <tr>
+        <td width="100px">Atmosphere</td>
+        <td><%= @review.rating_atmosphere %></td>
+      </tr>
+      <tr>
+        <td>Service</td>
+        <td><%= @review.rating_service %></td>
+      </tr>
+      <tr>
+        <td>Food</td>
+        <td><%= @review.rating_food %></td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td><%= @review.rating_location %></td>
+      </tr>
+      <tr height="24px">
+        <td><strong>Overall</strong></td>
+        <td><strong><%= @review.rating_overall %></strong></td>
+      </tr>
+    </table>
+  </div>
+  <div class="clear"></div>
+</div>
