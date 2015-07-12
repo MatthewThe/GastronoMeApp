@@ -2,7 +2,15 @@ class ReviewsController < ApplicationController
   before_action :get_review, only: [:show, :edit, :update]
   
   def index
-    @reviews = Review.all
+    if params[:tag].present?
+      @restaurants = Restaurant.tagged_with(params[:tag])
+      @reviews = []
+      @restaurants.each do |r|
+        @reviews += r.reviews
+      end
+    else
+      @reviews = Review.order(rating_overall: :desc)
+    end
   end
   
   def show

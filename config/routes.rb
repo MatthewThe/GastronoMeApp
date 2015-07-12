@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'reviews#index'
   resources :reviews, :restaurants, :users
+  
+  get 'reviews/tag/:tag' => 'reviews#index', as: :review_tag
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
