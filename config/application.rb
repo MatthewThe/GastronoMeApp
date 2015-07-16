@@ -24,7 +24,5 @@ module GastronoMeApp
     config.active_record.raise_in_transactional_callbacks = true
     
     ActsAsTaggableOn.remove_unused_tags = true
-    
-    config.serve_static_assets = true
   end
 end
