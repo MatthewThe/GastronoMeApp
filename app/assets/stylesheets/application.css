@@ -143,6 +143,8 @@ div.review_item { margin: 10px 10px; padding: 10px 15px; border:1px solid #BBB; 
 div.review_wrapper { margin-right: 135px; }
 div.review_left { float: left; width: 90%; }
 div.review_right { float: right; width: 135px; margin-top: 15px; margin-right:-135px; background-color:#222;border-radius: 15px; padding: 10px;}
+a.new_review_button { position:absolute; top: -50px; background-color:#008800; right: 0px;}
+a.new_review_button:hover { background-color:#006600;}
 
 p.trail {
 	border: 1px dotted #aaa;
@@ -168,3 +170,4 @@ p.footer {
 .space_4 	{height:4px;}
 .space_8 	{height:8px;}
 .space_16	{height:16px;}
+.relative {position:relative;}

@@ -1,13 +1,29 @@
 <h2>Reviews</h2>
-<%= link_to "New review", new_review_path(), class: "button" %>
+<div class="relative"><%= link_to "New review", new_review_path(), class: "button new_review_button" %></div>
 <div class="clear space_4"></div>
-<% @reviews.each do |r| %>
+<div style="font-weight:bold; margin: 20px 10px; display:inline-block;">Filter by</div>
+<% if @tags.count > 0 %>
+  <%= link_to "All", reviews_path, class: "button" %>
+<% end %>
+<% @tags.each do |t| %>
+  <%= link_to t.name, review_tag_path(t.name), class: "button" %>
+<% end %>
+<div style="float:right;font-weight:bold; margin: 10px 10px; display:inline-block;">Showing <%= @reviews.count %> results</div>
+<div class="clear"></div>
+<% @reviews.each_with_index do |r, i| %>
   <div class="review_item">
     <h6><%= link_to r.restaurant.name, r.restaurant %></h6>
-    <%= link_to "Review " + r.date.strftime("%-d %B %Y"), r %><br/>
-    Overall rating <strong><%= r.rating_overall %></strong>
+    <%= link_to "Review " + r.date.strftime("%-d %B %Y"), r %>
+    <div class="space_4"></div>
+    Overall rating: <strong><%= r.rating_overall %></strong><br/>
+    Tag: <strong><%= r.restaurant.tag_list %></strong><br />
+    Price: <strong><%= r.restaurant.price %></strong>
   </div>
+  <% if i % 2 == 1 %>
+  <div class="clear"></div>
+  <% end %>
 <% end %>
 <% if @reviews.count == 0 %>
 <p>No reviews available yet</p>
 <% end %>
+<div class="clear"></div>
