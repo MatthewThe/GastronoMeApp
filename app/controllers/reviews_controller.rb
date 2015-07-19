@@ -20,18 +20,27 @@ class ReviewsController < ApplicationController
   
   def new
     @review = Review.new
-    @restaurant = Restaurant.new
+    if params[:restaurant].present?
+      @restaurant = Restaurant.find_by(id: params[:restaurant])
+    else
+      @restaurant = Restaurant.new
+    end
   end
   
   def create
-    @review = Review.new(params_review)
-    @restaurant = Restaurant.new(params_restaurant)
-    @review.restaurant = @restaurant
-    if @review.save
-      if @restaurant.save
-        redirect_to @review
+    review = Review.new(params_review)
+    if params[:restaurant][:id].present?
+      restaurant = Restaurant.find_by(id: params[:restaurant][:id].to_i)
+      restaurant.attributes = params_existing_restaurant
+    else
+      restaurant = Restaurant.new(params_restaurant)
+    end
+    review.restaurant = restaurant
+    if review.save
+      if restaurant.save
+        redirect_to review
       else
-        @review.delete()
+        review.delete()
         redirect_to 'reviews'
       end
     end
@@ -47,7 +56,7 @@ class ReviewsController < ApplicationController
   end
   
   def destroy
-    Review.find_by(id: params[:id]).delete
+    Review.find_by(id: params[:id]).destroy
     redirect_to reviews_path
   end
   
@@ -64,5 +73,10 @@ class ReviewsController < ApplicationController
   private
   def params_restaurant
     params.require(:restaurant).permit(:name, :website, :address, :district, :image, :price, :tag_list)
+  end
+  
+  private
+  def params_existing_restaurant
+    params.require(:restaurant).except(:id).permit(:name, :website, :address, :district, :image, :price, :tag_list)
   end
 end

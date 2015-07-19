@@ -1,0 +1,34 @@
+<%= form_for @restaurant do |r| %>
+<h3>Restaurant</h3>
+  <p>
+  	<%= r.label :name %><br />
+    <%= r.text_field :name %>
+  </p>
+  <p>
+  	<%= r.label :address %><br />
+    <%= r.text_field :address %>
+  </p>
+  <p>
+    <%= r.label :district %><br />
+    <%= r.text_field :district %>
+  </p>
+  <p>
+  	<%= r.label :website %><br />
+    <%= r.url_field :website %>
+  </p>
+  <p>
+    <%= r.label :image %><br />
+    <%= r.url_field :image %>
+  </p>
+  <p>
+    <%= r.label :price %><br />
+    <%= r.text_field :price %>
+  </p>
+  <p>
+    <%= r.label :tags %><br />
+    <%= r.text_field :tag_list %>
+  </p>
+  <p>
+  	<%= r.submit "Submit" %>
+  </p>
+<% end %>

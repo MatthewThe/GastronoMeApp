@@ -1,4 +1,6 @@
 <h2><%= @restaurant.name %></h2>
+<div class="relative"><%= link_to "Add review", new_review_path(:restaurant => @restaurant), class: "button new_review_button" %></div>
+<div class="clear space_4"></div>
 <% if !@restaurant.image.empty? %>
 <p><%= image_tag @restaurant.image %></p>
 <% end %>
@@ -10,6 +12,53 @@
 <% if !@restaurant.website.empty? %>
 <p><strong><%= link_to "Website", @restaurant.website, target: "_blank" %></strong></p>
 <% end %>
+<%= link_to "Edit restaurant", edit_restaurant_path(@restaurant), class: "button" %>
 <% if @restaurant.reviews.count == 0 %>
 <%= link_to "Delete restaurant", @restaurant, :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "button" %>
+<% end %>
+<%= link_to "Back to all restaurants", restaurants_path, class: "button" %>
+
+<div class="clear space_16"></div>
+<h3>Reviews</h3>
+<% @restaurant.reviews.each do |r| %>
+<div class="review_wrapper">
+  <div class="review_left">
+    <p><strong>Date</strong>: <%=r.date.strftime("%-d %B %Y") %></p>
+    <p><strong>Food</strong>:<br /><%= simple_format r.food %></p>
+    <p><strong>Review</strong>:<br /><%= simple_format r.review %></p>
+    <%= link_to "Edit review", edit_review_path(r), class: "button" %>
+    <%= link_to "Delete review", r, :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "button" %>
+  </div>
+  <div class="review_right">
+    <h4>Ratings</h4>
+    <table>
+      <tr>
+        <td width="100px">Atmosphere</td>
+        <td><%= r.rating_atmosphere %></td>
+      </tr>
+      <tr>
+        <td>Service</td>
+        <td><%= r.rating_service %></td>
+      </tr>
+      <tr>
+        <td>Food</td>
+        <td><%= r.rating_food %></td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td><%= r.rating_location %></td>
+      </tr>
+      <tr height="24px">
+        <td><strong>Overall</strong></td>
+        <td><strong><%= r.rating_overall %></strong></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="clear space_8"></div>
+<hr>
+<% end %>
+
+<% if @restaurant.reviews.count == 0 %>
+<p>This restaurant has no reviews yet.</p>
 <% end %>

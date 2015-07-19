@@ -1,0 +1,1 @@
+{"klass":"Taps::Pull","database_url":"postgres://f3@localhost/f3_development","remote_url":"http://user:password@localhost:5000","session_uri":"/sessions/1939897019","stream_state":{},"completed_tables":[],"table_filter":null,"remote_tables_info":{"restaurants":200,"users":200,"schema_migrations":200,"reviews":200,"tags":200,"taggings":200}}

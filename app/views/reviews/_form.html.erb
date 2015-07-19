@@ -1,6 +1,9 @@
 <%= form_for @review do |f| %>
   <%= fields_for @restaurant do |r| %>
   <h3>Restaurant</h3>
+    <% if @restaurant.name and action_name == "new" %>
+      <%= r.hidden_field :id %>
+    <% end %>
     <p>
     	<%= r.label :name %><br />
       <%= r.text_field :name %>
