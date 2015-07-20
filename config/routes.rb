@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   root to: 'reviews#index'
-  resources :reviews, :restaurants, :users
   
   get 'reviews/tag/:tag' => 'reviews#index', as: :review_tag
   get 'restaurants/tag/:tag' => 'restaurants#index', as: :restaurant_tag
-  get 'restaurants/filter/:filter' => 'restaurants#index', as: :restaurants_filter
+  get 'map' => 'restaurants#index', as: :map, :mode => "map"
+  get 'map/tag/:tag' => 'restaurants#index', as: :map_tag, :mode => "map"
+  
+  resources :reviews, :restaurants, :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

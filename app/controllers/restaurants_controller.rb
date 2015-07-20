@@ -4,11 +4,17 @@ class RestaurantsController < ApplicationController
   def index
     @tags = ActsAsTaggableOn::Tag.most_used(10)
     if params[:tag].present?
-      @restaurants = Restaurant.tagged_with(params[:tag])
-    elsif params[:filter].present?
-      @restaurants = Restaurant.where("reviews_count = ?", 0)
+      if params[:tag] == "unreviewed"
+        @restaurants = Restaurant.where("reviews_count = ?", 0)
+      else
+        @restaurants = Restaurant.tagged_with(params[:tag])
+      end
     else
       @restaurants = Restaurant.all
+    end
+    
+    if params[:mode] == "map"
+      render :action => "map"
     end
   end
   

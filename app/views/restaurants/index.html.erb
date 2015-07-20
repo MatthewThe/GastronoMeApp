@@ -6,7 +6,7 @@
   <%= link_to "All", restaurants_path, class: "button" %>
 <% end %>
 <% if @tags.count > 0 %>
-  <%= link_to "Unreviewed", restaurants_filter_path("unreviewed"), class: "button" %>
+  <%= link_to "Unreviewed", restaurant_tag_path("unreviewed"), class: "button" %>
 <% end %>
 <% @tags.each do |t| %>
   <%= link_to t.name, restaurant_tag_path(t.name), class: "button" %>
