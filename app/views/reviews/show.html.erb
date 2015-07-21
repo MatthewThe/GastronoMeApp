@@ -18,6 +18,7 @@
     <% end %>
     <p><strong>Food</strong>:<br /><%= simple_format @review.food %></p>
     <p><strong>Review</strong>:<br /><%= simple_format @review.review %></p>
+    <%= link_to "Show on map", map_restaurant_path(@review.restaurant), class: "button" %>
     <%= link_to "Edit restaurant/review", edit_review_path(@review), class: "button" %>
     <%= link_to "Delete review", @review, :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "button" %>
     <%= link_to "Back to all reviews", reviews_path, class: "button" %>

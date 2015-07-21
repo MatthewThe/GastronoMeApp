@@ -74,3 +74,23 @@
   	<%= f.submit "Submit" %>
   </p>
 <% end %>
+<script type="text/javascript">
+$(document).ready(function(){
+  function create_slider(id) {
+    $slider = $(id);
+    $label = $slider.siblings("label");
+    $slider.data("orig_text", $label.text());
+    $label.text($slider.data("orig_text") + $slider.val());
+    $slider.change(function() {
+      $input_value = $(this).val();
+      $label = $(this).siblings("label");
+      $label.text($(this).data("orig_text") + $input_value);
+    });
+  }
+  create_slider("#review_rating_atmosphere");
+  create_slider("#review_rating_service");
+  create_slider("#review_rating_food");
+  create_slider("#review_rating_location");
+  create_slider("#review_rating_overall");
+});
+</script>

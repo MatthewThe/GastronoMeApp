@@ -1,0 +1,44 @@
+<h2><%= @restaurant.name %></h2>
+<div class="relative"><%= link_to "Add review", new_review_path(:restaurant => @restaurant), class: "button new_review_button" %></div>
+<div class="clear space_4"></div>
+<% if !@restaurant.image.empty? %>
+<p><%= image_tag @restaurant.image %></p>
+<% end %>
+<p>
+  <strong>Address</strong>: <%= @restaurant.address %> (<%= @restaurant.district %>)<br/>
+  <strong>Price</strong>: <%= @restaurant.price %><br />
+  <strong>Tags</strong>: <%= @restaurant.tag_list %>
+</p>
+<% if !@restaurant.website.empty? %>
+<p><strong><%= link_to "Website", @restaurant.website, target: "_blank" %></strong></p>
+<% end %>
+<%= link_to "Reviews", restaurant_path(@restaurant), class: "button" %>
+<%= link_to "Edit restaurant", edit_restaurant_path(@restaurant), class: "button" %>
+<% if @restaurant.reviews.count == 0 %>
+<%= link_to "Delete restaurant", @restaurant, :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "button" %>
+<% end %>
+<%= link_to "Back to all restaurants", map_path, class: "button" %>
+
+<div class="clear space_16"></div>
+<div style='width: 680px;'>
+  <div id="map" style='width: 100%; height: 500px;'></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  var handler = Gmaps.build('Google',{ zoom: 8 });
+  handler.buildMap({ internal: {id: 'map'}}, function(){
+    var markers = handler.addMarkers([
+      <% if @restaurant.latitude and @restaurant.longitude %>
+        { lat: <%=@restaurant.latitude%>, lng: <%=@restaurant.longitude%>, name: '<%=@restaurant.name%>', infowindow: '<strong><%=@restaurant.name%></strong><br /><%=@restaurant.address%>' }
+      <% end %>
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(16);
+    
+    _.each(markers, function(marker){
+      google.maps.event.trigger(marker.getServiceObject(), 'click');
+    });
+  });
+});
+</script>

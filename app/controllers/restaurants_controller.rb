@@ -19,6 +19,9 @@ class RestaurantsController < ApplicationController
   end
   
   def show
+    if params[:mode] == "map"
+      render :action => "map_restaurant"
+    end
   end
   
   def new

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'restaurants/tag/:tag' => 'restaurants#index', as: :restaurant_tag
   get 'map' => 'restaurants#index', as: :map, :mode => "map"
   get 'map/tag/:tag' => 'restaurants#index', as: :map_tag, :mode => "map"
+  get 'map/restaurant/:id' => 'restaurants#show', as: :map_restaurant, :mode => "map"
   
   resources :reviews, :restaurants, :users
   # The priority is based upon order of creation: first created -> highest priority.
