@@ -1,5 +1,17 @@
 <h2>Restaurants</h2>
-<div class="relative"><%= link_to "New restaurant", new_restaurant_path(), class: "button new_restaurant_button" %></div>
+<div class="relative">
+  <div id="float_menu">
+    <div class="search_box"><%= form_tag restaurants_path, :method => 'get' do %>  
+      <%= text_field_tag :search, params[:search], class: "search_field", :placeholder => "Search" %>
+      <%= hidden_field_tag :mode, "map" %>
+      <%= submit_tag "", :name => nil, class: "search_submit" %>
+    <% end %>
+    </div>
+    <div class="float">
+    <%= link_to "New restaurant", new_restaurant_path(), class: "button new_restaurant_button" %>
+    </div>
+  </div>
+</div>
 <div class="clear space_4"></div>
 <div style="font-weight:bold; margin: 20px 10px; display:inline-block;">Filter by</div>
 <% if @tags.count > 0 %>

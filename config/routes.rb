@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   
   get 'reviews/tag/:tag' => 'reviews#index', as: :review_tag
   get 'restaurants/tag/:tag' => 'restaurants#index', as: :restaurant_tag
+  get 'restaurants/search/:search' => 'restaurants#index', as: :restaurant_search
   get 'map' => 'restaurants#index', as: :map, :mode => "map"
+  get 'map/search/:search' => 'restaurants#index', as: :map_search, :mode => "map"
   get 'map/tag/:tag' => 'restaurants#index', as: :map_tag, :mode => "map"
   get 'map/restaurant/:id' => 'restaurants#show', as: :map_restaurant, :mode => "map"
   

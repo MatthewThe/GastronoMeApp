@@ -2,12 +2,31 @@ class RestaurantsController < ApplicationController
   before_action :get_restaurant, only: [:show, :edit, :update, :review, :submit_review]
   
   def index
+    if params[:utf8]
+      if params[:mode] == "map"
+        redirect_to "/map/search/#{params[:search]}"
+        return
+      else
+        redirect_to "/restaurants/search/#{params[:search]}"
+        return
+      end
+    end
     @tags = ActsAsTaggableOn::Tag.most_used(10)
     if params[:tag].present?
       if params[:tag] == "unreviewed"
         @restaurants = Restaurant.where("reviews_count = ?", 0)
       else
         @restaurants = Restaurant.tagged_with(params[:tag])
+      end
+    elsif params[:search].present?
+      @restaurants = Restaurant.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")
+      if @restaurants.count == 1
+        if params[:mode] == "map"
+          redirect_to map_restaurant_path(@restaurants.first)
+        else
+          redirect_to @restaurants.first
+        end
+        return
       end
     else
       @restaurants = Restaurant.all
@@ -17,7 +36,7 @@ class RestaurantsController < ApplicationController
       render :action => "map"
     end
   end
-  
+
   def show
     if params[:mode] == "map"
       render :action => "map_restaurant"

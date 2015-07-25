@@ -59,6 +59,7 @@ body {
   background: rgba(82, 82, 82, 0.9); 
 }
 #content a, #content a:visited {color:#eee;}
+input[type=submit] {color:#333;cursor:pointer;}
 
 #leftnav {
   position:absolute; 
@@ -131,8 +132,8 @@ h1 {
   padding:5px 0px 5px 0px;
   color:#eee;
 }
-h2{font-size:30px; color: #ddd; text-align:center; margin:5px 0px 5px 0px; padding:5px 0px 5px 0px;  text-shadow: -1px 0 #444, 0 1px #444, 1px 0 #444, 0 -1px #444; }
-h3{font-size:20px; text-align:left; margin:10px 0px 10px 0px; padding: 3px 0px 3px 0px; border-bottom:1px solid #BBB;}
+h2{font-size:30px; color: #ddd; text-align:left; margin:5px 0px 5px 0px; padding:5px 0px 5px 10px;  text-shadow: -1px 0 #444, 0 1px #444, 1px 0 #444, 0 -1px #444; }
+h3{font-size:20px; text-align:left; margin:10px 0px 10px 0px; padding: 3px 0px 3px 10px; border-bottom:1px solid #BBB;}
 h4{font-size:18px; text-align:center; margin:5px 0px 5px 0px;}
 h5{
   font-size:16px; 
@@ -154,8 +155,22 @@ div.review_right { float: right; width: 135px; margin-top: 15px; margin-right:-1
 a.new_review_button { position:absolute; top: -50px; background-color:#008800; right: 0px;}
 a.new_review_button:hover { background-color:#006600;}
 
-a.new_restaurant_button { position:absolute; top: -50px; background-color:#008800; right: 0px;}
+#float_menu { position:absolute; top: -50px; right: 0px;vertical-align:middle; }
+a.new_restaurant_button {background-color:#008800;}
 a.new_restaurant_button:hover { background-color:#006600;}
+.search_box { display:block; float:left; width: 138px; padding: 4px; border-radius: 10px; border: 1px solid #bbb; margin-right:10px; }
+.search_field { display:block; float:left; width: 100px; padding: 5px; border-radius: 5px; }
+.search_submit { 
+  background-image: url(<%= asset_path("search_icon.png") %>);
+  background-repeat:no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 0px;
+  margin: 3px;
+  display:block; float:left;
+}
 
 p.trail {
 	border: 1px dotted #aaa;
@@ -182,3 +197,4 @@ p.footer {
 .space_8 	{height:8px;}
 .space_16	{height:16px;}
 .relative {position:relative;}
+.float    {display:block; float:left;}
