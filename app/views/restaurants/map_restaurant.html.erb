@@ -5,7 +5,7 @@
 <p><%= image_tag @restaurant.image %></p>
 <% end %>
 <p>
-  <strong>Address</strong>: <%= @restaurant.address %> (<%= @restaurant.district %>)<br/>
+  <strong>Address</strong>: <%= @restaurant.address %> (<%= @restaurant.district %>) - <%= link_to "Google maps", "http://maps.google.com/?q=#{@restaurant.name}, #{@restaurant.address}, #{@restaurant.district}", target: "_blank" %><br/>
   <strong>Price</strong>: <%= @restaurant.price %><br />
   <strong>Tags</strong>: <%= @restaurant.tag_list %>
 </p>
