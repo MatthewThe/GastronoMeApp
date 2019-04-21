@@ -15,9 +15,39 @@
  */
 
 /* 1024x768 */ 
-div#container{width:1000px;}
-div#header{width:100%;}
-div#content{width:680px;min-height:550px;}
+div#container{width:100%;}
+div#header{width:96%;padding-left:4%;height:80px;padding-top:10px;}
+div#content{width:94%;margin-left:0%;padding:3%;}
+div#leftnav{position:relative;width:100%;top:0px;}
+
+div.review_item {width:86%;}
+#leftnav a .nav_image { opacity: 0.6; width:31%; max-width: 160px; height: 160px;}
+#leftnav .nav_text {width:100%; font-size:18px;}
+
+@media (min-width: 800px) {
+  div.review_item {width:38%;}
+  #leftnav a .nav_image { width:160px;}
+  div#header{height:100px;padding-top:40px;}
+  div#leftnav{position:absolute;width:20%;padding-left:5%;top:220px;}
+  #leftnav .nav_text {font-size:22px;}
+  div#content{width:62%;min-height:550px;margin-left:32%;}
+}
+
+@media (min-width: 1024px) {
+  div#container {
+    width:1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  div#header {
+	  padding-left: 40px;
+  }
+  
+  div#content {
+    padding: 20px;
+  }
+}
 
 html {min-height:100%; margin-bottom:1px;}
 
@@ -39,10 +69,7 @@ body {
 }
 
 #header {
-	height:100px;
 	text-align:left;
-	padding-top: 40px;
-	padding-left: 40px;
 	color:#333;
 	border-radius: 25px;
 }
@@ -50,8 +77,6 @@ body {
 
 #content 		{
   text-align:justify; 
-  padding: 20px;
-  margin-left:320px;
   color: #ddd;
   border:1px solid #000;
   border-radius: 25px;
@@ -62,14 +87,9 @@ body {
 input[type=submit] {color:#333;cursor:pointer;}
 
 #leftnav {
-  position:absolute; 
   color:#FFF; 
-  top:220px; 
-  margin-left:80px;
-  width:200px; 
 }
 #leftnav a, #leftnav a:visited {color:#fff; text-decoration: none; position:relative;}
-#leftnav a .nav_image { opacity: 0.6; height: 160px; width: 160px; }
 #leftnav a:hover .nav_image { opacity: 1.0; }
 #leftnav .nav_image {
   border-radius: 15px;
@@ -81,9 +101,7 @@ input[type=submit] {color:#333;cursor:pointer;}
   text-align:center; 
   top:-95px; 
   text-shadow: -1px 0 #444, 0 1px #444, 1px 0 #444, 0 -1px #444;
-  left: 0px; 
-  width: 165px; 
-  font-size:22px; 
+  left: 0px;
   color: #fff;
   font-weight: bold;
 }
@@ -106,9 +124,11 @@ select, option, textarea {
 	background-color:#fff;
 	border:0px solid #808080;
 }
-textarea { width: 300px; height: 100px;}
+textarea { width: 100%; height: 100px;}
 
 input{
+  width:100%;
+  max-width:300px;
 	color:#666; 
 	font-size:14px; 
 	font-family:Verdana; 
@@ -148,10 +168,12 @@ h6 {font-size:18px; margin:5px 0px 5px 0px; font-weight:bold;}
 h6 a, a:visited {text-decoration:none;}
 h6 a:hover {text-decoration:underline;}
 
-div.review_item { margin: 10px 10px; padding: 10px 15px; border:1px solid #BBB; border-radius: 15px; display: block; width: 42%; float: left;}
+div.review_item { margin: 2%; padding: 2% 3%; border:1px solid #BBB; border-radius: 15px; display: block; float: left;}
+
 div.review_wrapper { margin-right: 135px; }
 div.review_left { float: left; width: 90%; }
 div.review_right { float: right; width: 135px; margin-top: 15px; margin-right:-135px; background-color:#222;border-radius: 15px; padding: 10px;}
+
 a.new_review_button { position:absolute; top: -50px; background-color:#008800; right: 0px;}
 a.new_review_button:hover { background-color:#006600;}
 

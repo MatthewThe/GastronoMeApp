@@ -62,6 +62,6 @@ group :development, :test do
   gem 'thin'
 end
 
-ruby "2.2.2"
+ruby "2.6.3"
 
 

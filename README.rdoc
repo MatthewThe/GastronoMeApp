@@ -21,9 +21,15 @@ Things you may want to cover:
 
 * Deployment instructions
 
+# deploy local
+./launch_localhost.sh
+
+# deploy
 bundle update
 git push heroku master
 
+# update ruby version
+rbenv install 2.6.3
 * ...
 
 
