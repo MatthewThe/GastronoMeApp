@@ -21,11 +21,13 @@ div#content{width:94%;margin-left:0%;padding:3%;}
 div#leftnav{position:relative;width:100%;top:0px;}
 
 div.review_item {width:86%;}
-#leftnav a .nav_image { opacity: 0.6; width:31%; max-width: 160px; height: auto;}
+#leftnav a { width: 30%; max-width:160px;}
+#leftnav a .nav_image { opacity: 0.6; width:100%; max-width: 160px; height: auto;}
 #leftnav .nav_text {width:100%; font-size:18px;}
 
 @media (min-width: 800px) {
   div.review_item {width:38%;}
+  #leftnav a { width:100%;}
   #leftnav a .nav_image { width:160px;}
   div#header{height:100px;padding-top:40px;}
   div#leftnav{position:absolute;width:20%;padding-left:5%;top:220px;}
@@ -89,21 +91,23 @@ input[type=submit] {color:#333;cursor:pointer;}
 #leftnav {
   color:#FFF; 
 }
-#leftnav a, #leftnav a:visited {color:#fff; text-decoration: none; position:relative;}
+#leftnav a, #leftnav a:visited {color:#fff; text-decoration: none; position:relative;display:inline-block;}
 #leftnav a:hover .nav_image { opacity: 1.0; }
 #leftnav .nav_image {
   border-radius: 15px;
   border:1px solid #000;
   margin-bottom: 10px;
 }
+
 #leftnav .nav_text {
-  position:absolute; 
-  text-align:center; 
-  top:-95px; 
-  text-shadow: -1px 0 #444, 0 1px #444, 1px 0 #444, 0 -1px #444;
-  left: 0px;
+  position:absolute;
+  top:45%; 
+  left:50%;
+  transform: translate(-50%, -50%);
   color: #fff;
   font-weight: bold;
+  text-align:center; 
+  text-shadow: -1px 0 #444, 0 1px #444, 1px 0 #444, 0 -1px #444;
 }
 
 #map {
