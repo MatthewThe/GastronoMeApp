@@ -12,12 +12,14 @@ class RestaurantsController < ApplicationController
       end
     end
     @tags = ActsAsTaggableOn::Tag.most_used(10)
+    @current_tag = ""
     if params[:tag].present?
       if params[:tag] == "unreviewed"
         @restaurants = Restaurant.where("reviews_count = ?", 0)
       else
         @restaurants = Restaurant.tagged_with(params[:tag])
       end
+      @current_tag = params[:tag]
     elsif params[:search].present?
       @restaurants = Restaurant.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")
       if @restaurants.count == 1

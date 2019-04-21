@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
   
   def index
     @tags = ActsAsTaggableOn::Tag.most_used(10)
+    @current_tag = ''
     if params[:tag].present?
       @restaurants = Restaurant.tagged_with(params[:tag])
       @reviews = []
@@ -10,6 +11,7 @@ class ReviewsController < ApplicationController
         @reviews += r.reviews
       end
       @reviews = @reviews.sort_by{|r| -r.rating_overall}
+      @current_tag = params[:tag]
     else
       @reviews = Review.order(rating_overall: :desc)
     end

@@ -9,13 +9,13 @@
 <div class="clear space_4"></div>
 <div style="font-weight:bold; margin: 20px 10px; display:inline-block;">Filter by</div>
 <% if @tags.count > 0 %>
-  <%= link_to "All", map_path, class: "button" %>
+  <%= link_to "All", map_path, class: "button #{'active_filter' if '' == @current_tag}" %>
 <% end %>
 <% if @tags.count > 0 %>
-  <%= link_to "Unreviewed", map_tag_path("unreviewed"), class: "button" %>
+  <%= link_to "Unreviewed", map_tag_path("unreviewed"), class: "button #{'active_filter' if 'unreviewed' == @current_tag}" %>
 <% end %>
 <% @tags.each do |t| %>
-  <%= link_to t.name, map_tag_path(t.name), class: "button" %>
+  <%= link_to t.name, map_tag_path(t.name), class: "button #{'active_filter' if t.name == @current_tag}" %>
 <% end %>
 <div style="float:right;font-weight:bold; margin: 10px 10px; display:inline-block;">Showing <%= @restaurants.count %> results</div>
 <div class="clear space_8"></div>
@@ -25,12 +25,12 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  var handler = Gmaps.build('Google',{ markers: { clusterer: { gridSize: 50, maxZoom: 13 } } });
-  handler.buildMap({ internal: {id: 'map'}}, function(){
+  var handler = Gmaps.build('Google',{ markers: { clusterer: { gridSize: 50 } } });
+  handler.buildMap({ provider: {maxZoom: 16}, internal: {id: 'map'}}, function(){
     var markers = handler.addMarkers([
       <% @restaurants.each_with_index do |r, i| %>
         <% if r.latitude and r.longitude %>
-          { lat: <%=r.latitude%>, lng: <%=r.longitude%>, name: '<%=r.name%>', infowindow: '<strong><%= link_to r.name, map_restaurant_path(r) %></strong><br /><%=r.address%>' } <% if i+1 < @restaurants.count %>,<% end %>
+          { lat: <%=r.latitude%>, lng: <%=r.longitude%>, name: '<%=r.name%>', infowindow: '<strong><%= link_to r.name, map_restaurant_path(r) %></strong><br /><%=r.address%><br /><%= link_to "Google maps", "https://maps.google.com/?q=#{r.name}, #{r.address}, #{r.district}", target: "_blank" %>' } <% if i+1 < @restaurants.count %>,<% end %>
         <% end %>
       <% end %>
     ]);

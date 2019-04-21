@@ -5,7 +5,7 @@
 <p><%= image_tag @restaurant.image %></p>
 <% end %>
 <p>
-  <strong>Address</strong>: <%= @restaurant.address %> (<%= @restaurant.district %>) - <%= link_to "Google maps", "http://maps.google.com/?q=#{@restaurant.name}, #{@restaurant.address}, #{@restaurant.district}", target: "_blank" %><br/>
+  <strong>Address</strong>: <%= @restaurant.address %> (<%= @restaurant.district %>) - <%= link_to "Google maps", "https://maps.google.com/?q=#{@restaurant.name}, #{@restaurant.address}, #{@restaurant.district}", target: "_blank" %><br/>
   <strong>Price</strong>: <%= @restaurant.price %><br />
   <strong>Tags</strong>: <%= @restaurant.tag_list %>
 </p>
@@ -23,13 +23,6 @@
 <h3>Reviews</h3>
 <% @restaurant.reviews.each do |r| %>
 <div class="review_wrapper">
-  <div class="review_left">
-    <p><strong>Date</strong>: <%=r.date.strftime("%-d %B %Y") %></p>
-    <p><strong>Food</strong>:<br /><%= simple_format r.food %></p>
-    <p><strong>Review</strong>:<br /><%= simple_format r.review %></p>
-    <%= link_to "Edit review", edit_review_path(r), class: "button" %>
-    <%= link_to "Delete review", r, :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "button" %>
-  </div>
   <div class="review_right">
     <h4>Ratings</h4>
     <table>
@@ -54,6 +47,13 @@
         <td><strong><%= r.rating_overall %></strong></td>
       </tr>
     </table>
+  </div>
+  <div class="review_left">
+    <p><strong>Date</strong>: <%=r.date.strftime("%-d %B %Y") %></p>
+    <p><strong>Food</strong>:<br /><%= simple_format r.food %></p>
+    <p><strong>Review</strong>:<br /><%= simple_format r.review %></p>
+    <%= link_to "Edit review", edit_review_path(r), class: "button" %>
+    <%= link_to "Delete review", r, :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "button" %>
   </div>
 </div>
 <div class="clear space_8"></div>

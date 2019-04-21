@@ -17,19 +17,23 @@
 /* 1024x768 */ 
 div#container{width:100%;}
 div#header{width:96%;padding-left:4%;height:80px;padding-top:10px;}
-div#content{width:calc(100% - 40px);margin-left:0%;padding:20px;}
+div#content{width:calc(100% - 20px);margin-left:0%;padding:10px;}
 div#leftnav{position:relative;width:100%;top:0px;}
-
-div.review_item {width:calc(100% - 50px);}
 
 #leftnav .search_box {width:98%;max-width:330px;margin-bottom:10px;padding:4px;}
 #leftnav .search_field { width:calc(100% - 40px); max-width:300px;}
-#leftnav a { width: 30%; max-width:160px;}
+#leftnav a { width: 32.5%; max-width:160px;}
 #leftnav a .nav_image { opacity: 0.6; width:100%; max-width: 160px; height: auto;}
 #leftnav .nav_text {width:100%; font-size:18px;}
 
+div.review_item {width:calc(100% - 50px);}
+
+div.review_wrapper { margin-right: 0px; }
+div.review_left { float: left; width: calc(95% - 20px); padding:10px}
+div.review_right { width: 135px; max-width: calc(100% - 20px); background-color:#222;border-radius: 15px; padding: 10px;}
+
 @media (min-width: 800px) {
-  div.review_item {width:38%;}
+  div.review_item {width:calc(50% - 52px);}
   div#header{height:100px;padding-top:40px;}
   div#leftnav{position:absolute;width:20%;padding-left:5%;top:150px;}
   #leftnav a { width:100%;}
@@ -37,7 +41,10 @@ div.review_item {width:calc(100% - 50px);}
   #leftnav .search_box { width: 152px; margin-bottom:30px; }
   #leftnav .search_field { width:112px;}
   #leftnav .nav_text {font-size:22px;}
-  div#content{width:62%;min-height:550px;margin-left:32%;}
+  div#content{width:62%;min-height:550px;margin-left:32%;padding:20px}
+  
+  div.review_wrapper { margin-right: 155px; }
+  div.review_right { float: right; margin-top: 15px; margin-right:-155px;}
 }
 
 @media (min-width: 1024px) {
@@ -147,8 +154,11 @@ table	{font-size:14px}
 img 	{border: 0px;}
 
 a.n{color:#444;}
-a.button { padding: 10px; display: inline-block; border:1px solid #BBB; border-radius: 10px; background-color:#333; text-decoration:none; opacity: 0.8; font-weight:bold;}
+a.button { padding: 10px; margin:5px 0px; display: inline-block; border:1px solid #BBB; border-radius: 10px; background-color:#333; text-decoration:none; opacity: 0.8; font-weight:bold;}
 a.button:hover { background-color: #222; }
+
+a.active_filter {background-color:#3366ff;}
+a.active_filter:hover { background-color:#0040ff;}
 
 h1 {
   font-size:48px;
@@ -174,10 +184,6 @@ h6 a, a:visited {text-decoration:none;}
 h6 a:hover {text-decoration:underline;}
 
 div.review_item { margin: 10px; padding: 10px 15px; border:1px solid #BBB; border-radius: 15px; display: block; float: left;}
-
-div.review_wrapper { margin-right: 135px; }
-div.review_left { float: left; width: 90%; }
-div.review_right { float: right; width: 135px; margin-top: 15px; margin-right:-135px; background-color:#222;border-radius: 15px; padding: 10px;}
 
 a.new_review_button { position:absolute; top: -50px; background-color:#008800; right: 0px;}
 a.new_review_button:hover { background-color:#006600;}

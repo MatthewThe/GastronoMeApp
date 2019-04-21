@@ -25,11 +25,11 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-  var handler = Gmaps.build('Google',{ zoom: 8 });
+  var handler = Gmaps.build('Google');
   handler.buildMap({ internal: {id: 'map'}}, function(){
     var markers = handler.addMarkers([
       <% if @restaurant.latitude and @restaurant.longitude %>
-        { lat: <%=@restaurant.latitude%>, lng: <%=@restaurant.longitude%>, name: '<%=@restaurant.name%>', infowindow: '<strong><%=@restaurant.name%></strong><br /><%=@restaurant.address%>' }
+        { lat: <%=@restaurant.latitude%>, lng: <%=@restaurant.longitude%>, name: '<%=@restaurant.name%>', infowindow: '<strong><%=@restaurant.name%></strong><br /><%=@restaurant.address%><br /><%= link_to "Google maps", "https://maps.google.com/?q=#{@restaurant.name}, #{@restaurant.address}, #{@restaurant.district}", target: "_blank" %>' }
       <% end %>
     ]);
     handler.bounds.extendWith(markers);

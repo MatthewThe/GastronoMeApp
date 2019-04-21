@@ -3,10 +3,10 @@
 <div class="clear space_4"></div>
 <div style="font-weight:bold; margin: 20px 10px; display:inline-block;">Filter by</div>
 <% if @tags.count > 0 %>
-  <%= link_to "All", reviews_path, class: "button" %>
+  <%= link_to "All", reviews_path, class: "button #{'active_filter' if '' == @current_tag}" %>
 <% end %>
 <% @tags.each do |t| %>
-  <%= link_to t.name, review_tag_path(t.name), class: "button" %>
+  <%= link_to t.name, review_tag_path(t.name), class: "button #{'active_filter' if t.name == @current_tag}" %>
 <% end %>
 <div style="float:right;font-weight:bold; margin: 10px 10px; display:inline-block;">Showing <%= @reviews.count %> results</div>
 <div class="clear"></div>
